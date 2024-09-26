@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symptom Checker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Symptom Checker</h1>
+        <form method="post" action="/predict">
+            <div class="symptoms-list">
+                {% for symptom in symptoms %}
+                    <div class="symptom">
+                        <input type="checkbox" id="{{ symptom }}" name="selected_symptoms" value="{{ symptom }}">
+                        <label for="{{ symptom }}">{{ symptom }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="submit">Predict Disease</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result">
+                <h2>Prediction: {{ prediction }}</h2>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
